@@ -1,0 +1,33 @@
+int led1 = 2;  // پایه LED شماره 1 
+int led2 = 3;  // پایه LED شماره 2 
+int led3 = 4;  // پایه LED شماره 3 
+int led4 = 5;  // پایه LED شماره 4 
+int led5 = 6;  // پایه LED شماره 5 
+int led6 = 7;  // پایه LED شماره 6 
+
+unsigned long randNumber;  // عدد تصادفی برای تاس 
+int val, i = 0;
+
+void setup() {
+  Serial.begin(9600);                       // شروع ارتباط سریال 
+  randomSeed(analogRead(0));               // مقداردهی اولیه برای تولید عدد تصادفی 
+
+  pinMode(led1, OUTPUT);  // تنظیم پایه‌ها به عنوان خروجی 
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  pinMode(led4, OUTPUT);
+  pinMode(led5, OUTPUT);
+  pinMode(led6, OUTPUT);
+}
+
+void loop() {
+  randNumber = random(2, 8);               // تولید عدد تصادفی بین 2 تا 7 
+  Serial.print("randNumber=");
+  Serial.println(randNumber - 1);          // چاپ عدد تصادفی در سریال مانیتور 
+
+  for (int i = 2; i <= randNumber; i++) {  // روشن کردن LEDها از شماره 2 تا randNumber 
+    digitalWrite(i, HIGH);
+  }
+
+  while (1);  // توقف برنامه (حالت توقف برای تکرار نشدن loop) 
+}
